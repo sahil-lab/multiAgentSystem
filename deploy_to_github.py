@@ -54,7 +54,7 @@ def add_files():
 
 def commit_files(message):
     """Commit files to git"""
-    print("Committing files...")
+    print(f"Committing files with message: '{message}'...")
     run_command(f'git commit -m "{message}"')
     return True
 
@@ -141,13 +141,18 @@ def main():
     print("Make sure it has 'repo' scope permissions.")
     token = getpass.getpass("Enter your GitHub personal access token: ")
     
+    # Get commit message
+    commit_message = input("\nEnter commit message (default: 'Initial commit'): ")
+    if not commit_message.strip():
+        commit_message = "Initial commit"
+    
     # Initialize steps
     steps = [
         ("Creating README.md", lambda: create_readme(repo_name, description)),
         ("Creating .gitignore", create_gitignore),
         ("Initializing git repository", initialize_git),
         ("Adding files to git", add_files),
-        ("Creating initial commit", lambda: commit_files("Initial commit")),
+        ("Creating commit", lambda: commit_files(commit_message)),
         ("Creating GitHub repository", lambda: create_github_repo(token, repo_name, description, private))
     ]
     
