@@ -1,0 +1,22 @@
+# Install torch first to ensure correct version
+torch==2.0.1
+
+# Other dependencies
+llama-cpp-python==0.2.23
+transformers==4.35.2
+sentence-transformers==2.2.2
+chromadb==0.4.22
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.2
+python-dotenv==1.0.0
+numpy==1.26.2
+gradio==4.9.0
+tqdm==4.66.1
+redis==5.0.1
+huggingface_hub==0.19.4
+# vllm removed due to build issues on Windows without CUDA
+
+# Optional Mistral native libraries (uncomment to use)
+# git+https://github.com/mistralai/mistral-common.git
+# git+https://github.com/mistralai/mistral-inference.git 

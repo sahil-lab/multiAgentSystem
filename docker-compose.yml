@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./models:/app/models
+      - ./chroma_db:/app/chroma_db
+    environment:
+      - MODEL_PATH=/app/models/mistral-7b-instruct-v0.2.Q4_K_M.gguf
+      - NUM_AGENTS=3
+      - MAX_ITERATIONS=10
+      - CONVERGENCE_THRESHOLD=0.98
+      - TEMPERATURE_STRATEGY=decreasing
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+        reservations:
+          memory: 4G 

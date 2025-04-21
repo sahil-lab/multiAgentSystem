@@ -1,0 +1,17 @@
+# Virtual Environment
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Models directory
+models/
+D:/llm_models/
+D:/hf_cache/
+
+# Logs
+*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints
