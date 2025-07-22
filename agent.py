@@ -4,10 +4,12 @@ import numpy as np
 from typing import Dict, List, Optional, Union, Tuple
 from llama_cpp import Llama
 from sentence_transformers import SentenceTransformer
+import gc
 
 class Agent:
     """Agent class that wraps a local LLM for inference with improvement capabilities"""
     
+
     def __init__(
         self,
         model_path: str,
@@ -34,13 +36,10 @@ class Agent:
         if self.verbose:
             print(f"Agent {agent_id}: Initializing with {model_path}")
         
-        # Load LLM
-        self.llm = Llama(
-            model_path=model_path,
-            n_ctx=context_size,
-            n_batch=512,
-            verbose=verbose
-        )
+        # define global parameters for usage in prompt generation later
+        self.model_path = model_path
+        self.context_size = context_size
+        self.verbose = verbose
         
         # Load embedding model
         self.embedding_model = SentenceTransformer(embedding_model)
@@ -94,7 +93,15 @@ Your improved response:
 """
         else:
             full_prompt = prompt
-        
+
+        # Load LLM
+        self.llm = Llama(
+            model_path=self.model_path,
+            n_ctx=self.context_size,
+            n_batch=512,
+            verbose=self.verbose
+        )
+
         # Generate response
         response = self.llm(
             full_prompt,
@@ -103,6 +110,10 @@ Your improved response:
             stop=["</s>", "Human:", "User:"],
             echo=False
         )
+
+        # Remove LLM from memory
+        del self.llm
+        gc.collect()
         
         generation_time = time.time() - start_time
         
