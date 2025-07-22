@@ -24,7 +24,7 @@ class DistributedOrchestrator(Orchestrator):
     
     def __init__(
         self, 
-        num_agents: int = 3,
+        num_agents: int = 2,
         max_tokens: int = 512, 
         temperature: float = 0.7,
         model_path: str = None,

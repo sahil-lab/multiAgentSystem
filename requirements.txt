@@ -1,5 +1,5 @@
 # Install torch first to ensure correct version
-torch==2.0.1
+torch==2.2.1
 
 # Other dependencies
 llama-cpp-python==0.2.23

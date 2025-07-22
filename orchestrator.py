@@ -37,7 +37,7 @@ class Orchestrator:
             agent_factory: Optional factory function to create custom agent instances
         """
         self.model_path = model_path
-        self.num_agents = min(num_agents, 1000000)  # Cap at 1 million as requested
+        self.num_agents = min(num_agents, 5)  # Cap at 1 million as requested
         self.embedding_dimension = embedding_dimension
         self.vector_db_path = vector_db_path
         self.convergence_threshold = convergence_threshold
@@ -242,7 +242,7 @@ class Orchestrator:
         Args:
             num_agents: New number of agents
         """
-        num_agents = min(num_agents, 1000000)  # Cap at 1 million
+        num_agents = min(num_agents, 2)  # Cap at 1 million
         
         if num_agents > len(self.agents):
             # Add more agents

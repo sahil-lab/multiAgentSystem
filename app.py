@@ -31,8 +31,8 @@ except ImportError:
 
 # Constants
 DEFAULT_MODEL_PATH = "./models/llama-2-7b-chat.Q4_K_M.gguf"  # Update with your model path
-DEFAULT_NUM_AGENTS = 3
-MAX_AGENTS = 1000000  # Increased to 1 million as requested
+DEFAULT_NUM_AGENTS = 1
+MAX_AGENTS = 5  # Increased to 1 million as requested
 VECTOR_DB_PATH = "./chroma_db"
 MODEL_OPTIONS = [
     "./models/llama-2-7b-chat.Q4_K_M.gguf",
